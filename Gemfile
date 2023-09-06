@@ -45,6 +45,10 @@ gem "bootsnap", require: false
 #ユーザー機能の追加gem
 gem 'devise'
 
+# Active Storageを導入(画像を投稿するため)
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'
+
 
 # Use Sass to process CSS
 # gem "sassc-rails"
