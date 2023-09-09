@@ -40,11 +40,6 @@
         </div>
       </div>
     </header>
-    <% if user_signed_in? %>
-          <div class="user_name">
-          <%= "こんにちは、#{current_user.name}さん"%>
-          <div>
-    <% end %>
     <%= yield %>
     <footer class="footer">
       <p class="copyright">Copyright © PROTO SPACE All rights reserved.</p>

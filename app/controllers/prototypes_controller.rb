@@ -1,6 +1,7 @@
 class PrototypesController < ApplicationController
   def index
-    @prototype = Prototype.new
+    # @prototype = Prototype.new
+    @prototypes = Prototype.all
   end
 
   def new
