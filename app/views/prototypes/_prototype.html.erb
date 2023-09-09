@@ -1,31 +1,9 @@
 <div class="card">
   <%= link_to image_tag("デザインカンプ（一覧表示画面）.png", class: :card__img), prototype_path(prototype.id) %>
   <div class="card__body">
-    <%= link_to "1プロトタイプのタイトル", root_path, class: :card__title%>
+    <%= link_to prototype.title, root_path, class: :card__title%>
     <p class="card__summary">
-      <%= "1プロトタイプのキャッチコピー" %>
-    </p>
-    <%= link_to "by #{current_user.name}", root_path, class: :card__user %>
-  </div>
-</div>
-
-<div class="card">
-  <%= link_to image_tag("デザインカンプ（一覧表示画面）.png", class: :card__img), prototype_path(prototype.id) %>
-  <div class="card__body">
-    <%= link_to "2プロトタイプのタイトル", root_path, class: :card__title%>
-    <p class="card__summary">
-      <%= "2プロトタイプのキャッチコピー" %>
-    </p>
-    <%= link_to "by #{current_user.name}", root_path, class: :card__user %>
-  </div>
-</div>
-
-<div class="card">
-  <%= link_to image_tag("デザインカンプ（一覧表示画面）.png", class: :card__img), prototype_path(prototype.id) %>
-  <div class="card__body">
-    <%= link_to "3プロトタイプのタイトル", root_path, class: :card__title%>
-    <p class="card__summary">
-      <%= "3プロトタイプのキャッチコピー" %>
+      <%= prototype.catch_copy %>
     </p>
     <%= link_to "by #{current_user.name}", root_path, class: :card__user %>
   </div>
