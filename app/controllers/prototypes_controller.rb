@@ -4,6 +4,10 @@ class PrototypesController < ApplicationController
     @prototypes = Prototype.all
   end
 
+  def show
+    # @prototype = Prototype.find(params[:id])
+  end
+
   def new
     @prototype = Prototype.new
   end
