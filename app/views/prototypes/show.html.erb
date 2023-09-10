@@ -14,7 +14,7 @@
       <% end %>
       <%# // プロトタイプの投稿者とログインしているユーザーが同じであれば上記を表示する %>
       <div class="prototype__image">
-        <%= image_tag "デザインカンプ（一覧表示画面）.png" %>
+        <%= image_tag @prototype.image%>
       </div>
       <div class="prototype__body">
         <div class="prototype__detail">
@@ -30,17 +30,21 @@
           </p>
         </div>
       </div>
-      <div class="prototype__comments">
+      <%# <div class="prototype__comments">
+      <% if user_signed_in? %>
         <%# ログインしているユーザーには以下のコメント投稿フォームを表示する %>
-          <%# <%= form_with model: モデル名,local: true do |f|%>
+          <%# <%= form_with model: @comment,local: true do |f| %>
             <div class="field">
-              <%# <%= f.label :hoge, "コメント" %><br />
-              <%# <%= f.text_field :hoge, id:"comment_content" %>
+                <%# <%= f.label :comment, "コメント" %><br />
+                <%# <%= f.text_field :comment, id:"comment_content" %> 
             </div>
             <div class="actions">
-              <%# <%= f.submit "送信する", class: :form__btn  %>
-            </div>
-          <%# <% end %>
+              <%# <%= f.submit "送信する", class: :form__btn  %> 
+            <%# </div> %>
+          <%# <% end %> 
+      <%# <% else %> 
+            <%# <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong> %>
+      <%# <% end %>  
         <%# // ログインしているユーザーには上記を表示する %>
         <ul class="comments_lists">
           <%# 投稿に紐づくコメントを一覧する処理を記述する %>
