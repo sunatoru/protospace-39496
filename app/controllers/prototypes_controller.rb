@@ -1,6 +1,7 @@
 class PrototypesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_prototype, only: [:edit, :show]
+  before_action :ensure_user, only: [:edit, :update, :destroy]
   def index
     @prototypes = Prototype.includes(:user)
   end
@@ -17,7 +18,7 @@ class PrototypesController < ApplicationController
   def create
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
-      redirect_to root_path
+      redirect_to prototype_path(@prototype.id)
     else
       render :new
     end
@@ -30,17 +31,15 @@ class PrototypesController < ApplicationController
   end
 
   def update
-    prototype = Prototype.find(params[:id])
-    if prototype.update(prototype_params)
-        redirect_to root_path
+    if @prototype.update(prototype_params)
+        redirect_to prototype_path
     else 
       render :edit
     end
   end
 
   def destroy
-    prototype = Prototype.find(params[:id])
-    prototype.destroy
+    @prototype.destroy
     redirect_to root_path
   end
 
@@ -51,5 +50,14 @@ class PrototypesController < ApplicationController
 
   def set_prototype
     @prototype = Prototype.find(params[:id])
+  end
+
+  def ensure_user
+    @prototypes = current_user.prototypes
+    # これにより@prototypesに投稿したユーザーのプロトタイプをまとめて呼び出す変数
+    @prototype = @prototypes.find_by(id: params[:id])
+    # この単数のprototypeの中にまとめて呼び出した
+    redirect_to root_path unless @prototype
+    # この記述によりeditで他のユーザーが自分の投稿したprototypeではないのに編集ページのidを入力できれば編集できてたものをroot_pathによりホーム画面に戻す記述です。
   end
 end
